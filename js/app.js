@@ -1,3 +1,5 @@
+var canvasElement = document.getElementsByTagName('canvas');
+
 // Enemies our player must avoid
 var Enemy = function(x, y, moveSpeed) {
     // Variables applied to each of our instances go here,
@@ -17,6 +19,12 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.moveSpeed * dt;
+
+    // reset enemy x position and moveSpeed when it reaches the end of the canvas
+    if( this.x > canvasElement[0].width) {
+        this.x = -100;
+        this.moveSpeed = 100 + Math.floor(Math.random() * 200)
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -41,6 +49,7 @@ Player.prototype.update = function() {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
@@ -49,6 +58,11 @@ var numberOfEnemies = 3;
 for (var i = 0; i < numberOfEnemies; i++){
     allEnemies.push(new Enemy(-100 , 60 + i * 83 , 100 + Math.floor(Math.random() * 200) ))
 };
+// basic way 
+// var e1 = new Enemy(-100,60);
+// var e2 = new Enemy(-100,140);
+// var e3 = new Enemy(-100,220);
+
 
 // Place the player object in a variable called player
 var player = new Player(200,400);
