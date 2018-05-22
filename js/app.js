@@ -43,9 +43,14 @@ Player.prototype.render = function() {
 };
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
 var allEnemies = [];
+var numberOfEnemies = 3;
+// enemies are placed @ y = 60 + enemyNo * 83;
+for (var i = 0; i < numberOfEnemies; i++){
+    allEnemies.push(new Enemy(-100 , 60 + i * 83 , 100 + Math.floor(Math.random() * 200) ))
+};
 
+// Place the player object in a variable called player
 var player = new Player(200,400);
 
 // This listens for key presses and sends the keys to your
