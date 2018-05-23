@@ -41,8 +41,10 @@ var Player = function(x, y){
     this.sprite = 'images/char-boy.png'; 
 };
 
+//Handles collision and resets the game.
 Player.prototype.update = function() {
-    
+    //add collision
+    };
 };
 
 // Draw the player on the screen, required method for game
@@ -74,7 +76,13 @@ Player.prototype.handleInput = function(key) {
           if (this.y < 400) {
               this.y += 82;
           }
-          break;
+          break;          
+        };
+
+        //Player win condition
+        if(this.y < 0) {
+            this.x = 200;
+            this.y = 400;
         }
 };
 
@@ -84,7 +92,7 @@ var allEnemies = [];
 var numberOfEnemies = 3;
 // enemies are placed @ y = 60 + enemyNo * 83;
 for (var i = 0; i < numberOfEnemies; i++){
-    allEnemies.push(new Enemy(-100 , 60 + i * 83 , 100 + Math.floor(Math.random() * 200) ))
+    allEnemies.push(new Enemy(-100 , 60 + i * 83 , 100 + Math.floor(Math.random() * 200) ));
 };
 // basic way 
 // var e1 = new Enemy(-100,60);
